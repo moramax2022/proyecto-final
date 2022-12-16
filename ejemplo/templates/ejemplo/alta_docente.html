@@ -1,0 +1,14 @@
+{% extends 'ejemplo/base_docentes.html' %}
+{% block titulo%} Alta de nuevo Docente {% endblock %}
+{% block contenido %}
+  
+  <form action="/Docentes/alta" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Agregar">
+  </form>
+
+  <h2 style="color:green">{{msg_exito}}</h2>
+
+  <a href=""/ejemplo">Volver al inicio</a>
+{% endblock %}

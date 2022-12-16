@@ -1,0 +1,16 @@
+{% extends 'ejemplo/base_alumnos.html' %}
+{% block titulo%} Buscar Alumnos por nombre {% endblock %}
+{% block contenido %}
+  
+  <form action="/Alumnos/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Buscar">
+  </form>
+
+  {% for alumnos in lista_alumnos %}
+      <ul>
+          <li> Nombre: {{alumnos.nombre}}, Curso: {{alumnos.curso}}, Matrícula: {{alumnos.numero_matricula}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}

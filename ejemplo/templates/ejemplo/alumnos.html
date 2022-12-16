@@ -1,0 +1,15 @@
+{% extends 'ejemplo/base_alumnos.html' %}
+{% block contenido %}
+<a href="alumnos.html"> Alumnos</a>
+{% for alumnos in lista_alumnos %}
+<ul>
+    <li> Nombre: {{alumnos.nombre}}, Curso: {{alumnos.curso}}, Matrícula: {{alumnos.numero_matricula}}
+        
+    </li>
+</ul>
+{% endfor %}
+{%endblock %}
+
+{% block titulo%}
+Lista de todos Los alumnos
+{% endblock %}
