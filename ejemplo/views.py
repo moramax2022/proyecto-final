@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404 # <----- Nuevo import
-from ejemplo.models import Familiar
+from ejemplo.models import Docentes, Familiar
 from ejemplo.models import Alumnos
 from ejemplo.forms import  AlumnosForm, Buscar, DocentesForm, FamiliarForm
 from django.views import View 
@@ -151,4 +151,21 @@ class AltaDocente(View):
             return render(request, self.template_name, {'form':form, 
                                                         'msg_exito': msg_exito})
         
+        return render(request, self.template_name, {"form": form})
+
+class BuscarDocente(View):
+    form_class = Buscar
+    template_name = 'ejemplo/docentes_buscar.html'
+    initial = {"nombre":""}
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data.get("nombre")
+            lista_docentes = Docentes.objects.filter(nombre__icontains=nombre).all() 
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'lista_docentes':lista_docentes})
         return render(request, self.template_name, {"form": form})

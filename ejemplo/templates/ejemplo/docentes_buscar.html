@@ -1,0 +1,16 @@
+{% extends 'ejemplo/base_docentes.html' %}
+{% block titulo%} Buscar Docentes {% endblock %}
+{% block contenido %}
+  
+  <form action="/Docentes/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Buscar">
+  </form>
+
+  {% for docentes in lista_docentes %}
+      <ul>
+          <li> Nombre: {{docentes.nombre}}, Asignatura: {{docentes.asignatura}}, Grado: {{docentes.numero_grado}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}
