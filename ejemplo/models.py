@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 # Create your models here.
 from django.db import models
 class Familiar(models.Model):
@@ -26,3 +27,5 @@ class Docentes(models.Model):
     def __str__(self):
       return f"{self.nombre},{self.asignatura} {self.grado}, {self.id}"
       
+
+
